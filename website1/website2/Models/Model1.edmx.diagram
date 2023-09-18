@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="558d047894734155b1f50b308c33e174" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBHModel.Account" Width="1.5" PointX="0.625" PointY="1" />
+        <EntityTypeShape EntityType="QLBHModel.KhachHang" Width="1.5" PointX="2.875" PointY="1" />
+        <AssociationConnector Association="QLBHModel.FK_KhachHang_Account" />
+        <EntityTypeShape EntityType="QLBHModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="QLBHModel.NhaSanXuat" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="QLBHModel.SanPham" Width="1.5" PointX="3" PointY="8" />
+        <AssociationConnector Association="QLBHModel.FK_SanPham_LoaiSanPham" />
+        <AssociationConnector Association="QLBHModel.FK_SanPham_NhaSanXuat" />
+        <EntityTypeShape EntityType="QLBHModel.GioHang" Width="1.5" PointX="6.25" PointY="7.375" />
+        <EntityTypeShape EntityType="QLBHModel.DonHang" Width="1.5" PointX="8.375" PointY="3.75" />
+        <EntityTypeShape EntityType="QLBHModel.ChiTietDonHang" Width="1.5" PointX="8.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

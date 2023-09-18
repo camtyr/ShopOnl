@@ -1,0 +1,70 @@
+﻿@model IEnumerable<website2.Models.NhaSanXuat>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container" style="margin: 100px 0px">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Danh sách Nhà sản xuất</h3>
+            
+            <div class="table-responsive">
+                <table id="customers">
+                    <thead>
+                        <tr>
+                            <th>Tên nhà sản xuất</th>
+                            <th>Tình trạng</th>
+                            <th colspan="2"><a href="~/Admin/NhaSanXuatAdmin/Create"><img src="~/assets/img/AddIcon.png" style="margin-left: 30%"></a></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.TenNhaSanXuat</td>
+                                    <td>@Html.Raw(@item.TinhTrang == true ? "Chưa khóa" : "Đã khóa")</td>
+                                    <td><a href="~/Admin/NhaSanXuatAdmin/Edit/@item.MaNhaSanXuat"><img src="~/assets/img/EditIcon.png"></a></td>
+                                    <td><a href="~/Admin/NhaSanXuatAdmin/Delete/@item.MaNhaSanXuat"><img src="~/assets/img/DeleteIcon.png"></a></td>
+                                </tr>
+                            }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: auto;
+        text-align: center;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            
+        }
+</style>

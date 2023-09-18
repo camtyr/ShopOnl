@@ -1,0 +1,139 @@
+﻿@model website2.Models.SanPham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container" style="margin: 100px 0px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-heading">
+                <h3>Sửa sản phẩm</h3>
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm("Edit", "SanPhamAdmin", FormMethod.Post, new { @style = "width: 70%", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaSanPham)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TenSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control", @style = "width: 50%" } })
+                            @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+                            <span class="text-danger">@TempData["Error"]</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Loại sản phẩm</label>
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.DropDownList("MaLoaiSanPham", null, new { @style = "float: left, width: 70%" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Nhà sản xuất</label>
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.DropDownList("MaNhaSanXuat", null, new { @style = "float: left, width: 70%" })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình chính</label>
+                        <div class="col-md-10">
+                            <input type="file" id="file_hinh" name="HinhChinh" onchange="previewFile();" style="float: left" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình 1</label>
+                        <div class="col-md-10">
+                            <input type="file" id="file_hinh" name="Hinh1" onchange="previewFile();" style="float: left" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình 2</label>
+                        <div class="col-md-10">
+                            <input type="file" id="file_hinh" name="Hinh2" onchange="previewFile();" style="float: left" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình 3</label>
+                        <div class="col-md-10">
+                            <input type="file" id="file_hinh" name="Hinh3" onchange="previewFile();" style="float: left" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình 4</label>
+                        <div class="col-md-10">
+                            <input type="file" id="file_hinh" name="Hinh4" onchange="previewFile();" style="float: left" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                <select name="TinhTrang">
+                                    @if (Model.TinhTrang == true)
+                                    {
+                                        <option value="False">Đã khóa</option>
+                                        <option value="True" selected>Chưa khóa</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="False" selected>Đã khóa</option>
+                                        <option value="True">Chưa khóa</option>
+                                    }
+                                </select>
+                                @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CauHinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10" val>
+                            <textarea class="form-control" id="editor1" name="CauHinh" rows="4" cols="30">@Model.CauHinh</textarea>
+                            @Html.ValidationMessageFor(model => model.CauHinh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+

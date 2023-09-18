@@ -1,0 +1,71 @@
+﻿@model website2.Models.KhachHang
+
+@{
+    ViewBag.Title = "ThongTinTK";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+
+<div class="container" style="margin: 100px 30%">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="dl-horizontal">Thông tin tài khoản</h3>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Tên người dùng:</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenKhachHang)
+                </dd>
+
+                <dt>
+                    <label>Số điện thoại:</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoDienThoai)
+                </dd>
+
+                <dt>
+                    <Label>Email:</Label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    <Label>Địa chỉ:</Label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DiaChi)
+                </dd>
+
+            </dl>
+            <div>
+                <a href="~/Home/CapNhatThongTinTK">Thay đổi</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*
+      <style>
+        html {
+            font-size: 62.5%;
+        }
+
+        dt, dd {
+            font-size: 1.6rem;
+        }
+
+        label {
+            float: left;
+        }
+
+    </style>
+
+*@

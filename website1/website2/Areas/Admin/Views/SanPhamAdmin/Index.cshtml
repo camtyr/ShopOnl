@@ -1,0 +1,114 @@
+﻿@model IEnumerable<website2.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    
+
+}
+
+<div class="container" style="margin: 100px 0px">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Danh sách sản phẩm</h3>
+
+            <div class="table-responsive">
+                <table id="customers">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Nhà sản xuất</th>
+                            <th>Cấu hình</th>    
+                            <th>Hình ảnh</th>
+                            <th>Tình trạng</th>
+                            <th colspan="2"><a href="~/Admin/SanPhamAdmin/Create"><img src="~/assets/img/AddIcon.png" style="margin-left: 30%"></a></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.TenSanPham</td>
+                                @{
+                                    if (item.MaLoaiSanPham != null)
+                                    {
+                                        <td>@website2.Models.LoaiSanPhamBUS.ChiTietLSP((int)item.MaLoaiSanPham).TenLoaiSanPham</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Không có</td>
+                                    }
+                                }
+
+                                @{
+                                    if (item.MaNhaSanXuat != null)
+                                    {
+                                        <td>@website2.Models.NhaSanXuatBUS.ChiTietNSX((int)item.MaNhaSanXuat).TenNhaSanXuat</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Không có</td>
+                                    }
+                                }
+                                
+                                @*<td>@Html.Raw(@item.MaLoaiSanPham != null ? website2.Models.LoaiSanPhamBUS.ChiTietLSP((int)item.MaLoaiSanPham).TenLoaiSanPham : "Không có")</td>*@
+                                @*<td>@Html.Raw(@item.MaNhaSanXuat != null ? website2.Models.NhaSanXuatBUS.ChiTietNSX((int)item.MaNhaSanXuat).TenNhaSanXuat : "Không có")</td>*@
+                                <td>@Html.Raw(@item.CauHinh)</td>
+                                <td style="width: 30%"><img src="~/assets/img/@item.HinhChinh" style="width: 30%" /></td>
+                                @*<td>@Html.Raw(@item.TinhTrang == true ? "Chưa khóa" : "Đã khóa")</td>*@
+                                @{
+                                    if (item.TinhTrang == true)
+                                        {
+                                        <td> Chưa khóa </td> 
+                                        }
+                                    else
+                                    {
+                                        <td> Đã khóa </td>
+                }
+                                }
+                                <td><a href="~/Admin/SanPhamAdmin/Edit/@item.MaSanPham"><img src="~/assets/img/EditIcon.png"></a></td>
+                                <td><a href="~/Admin/SanPhamAdmin/Delete/@item.MaSanPham"><img src="~/assets/img/DeleteIcon.png"></a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: auto;
+        text-align: center;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+        }
+</style>
+
+
+

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<website2.Models.NhaSanXuat>
+
+<li class="nav-item @Html.Raw(ViewBag.active==3 ? "active" : "") dropdown">
+    <a href="~/Product/ProductType" class="nav-link dropdown-toggle" data-toggle="dropdown">Producer</a>
+    <div class="dropdown-menu" style="font-size: 1.6rem">
+        <ul class="list-unstyled dropdown-content">
+            @foreach (var item in Model)
+            {
+                <li style="padding: 5px 10px;"><a href="~/Producer/index/@item.MaNhaSanXuat">@item.TenNhaSanXuat</a></li>
+            }
+        </ul>
+    </div>
+</li>

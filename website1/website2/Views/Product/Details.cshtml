@@ -1,0 +1,120 @@
+﻿@model website2.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    ViewBag.active = 2;
+}
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        <a href="~/Home/index">Home</a>
+                        <a href="~/Product/index">Product</a>
+                        <a href="~/Product/Details/@Model.MaSanPham">@Model.TenSanPham</a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="product-images">
+                                <div class="product-main-img">
+                                    <img src="~/assets/img/@Model.HinhChinh" alt="">
+                                </div>
+
+                                <div class="product-gallery">
+                                    <img src="~/assets/img/@Model.Hinh1" alt="">
+                                    <img src="~/assets/img/@Model.Hinh2" alt="">
+                                    <img src="~/assets/img/@Model.Hinh3" alt="">
+                                    <img src="~/assets/img/@Model.Hinh4" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="product-inner">
+                                <h2 class="product-name">@Model.TenSanPham</h2>
+                                <div class="product-inner-price">
+                                    <span style="font-size: 2rem">@string.Format("{0: 0,#}", Model.Gia) VNĐ</span>
+                                </div>
+                                <div>
+                                    <label>Loại sản phẩm: </label>
+                                    @*@Html.Raw(Model.MaLoaiSanPham != null ? website2.Models.LoaiSanPhamBUS.ChiTietLSP((int)Model.MaLoaiSanPham).TenLoaiSanPham : "Không có")*@
+                                    @{ 
+                                        if (Model.MaLoaiSanPham != null)
+                                        {
+                                            <span>@website2.Models.LoaiSanPhamBUS.ChiTietLSP((int)Model.MaLoaiSanPham).TenLoaiSanPham</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Không xác định</span>
+                                        }
+                                    }
+                                </div>
+                                <div>
+                                    <label>Hãng: </label>
+                                    @*@Html.Raw(Model.MaNhaSanXuat != null ? website2.Models.NhaSanXuatBUS.ChiTietNSX((int)Model.MaNhaSanXuat).TenNhaSanXuat : "Không có")*@
+                                    @{
+                                        if (Model.MaNhaSanXuat != null)
+                                        {
+                                            <span>@website2.Models.NhaSanXuatBUS.ChiTietNSX((int)Model.MaNhaSanXuat).TenNhaSanXuat</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Không xác định</span>
+                                        }
+                                    }
+                                </div>
+
+                                <div>
+                                    @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                                    {
+                                        <input type="hidden" name="MaSanPham" value="@Model.MaSanPham" />
+                                        
+                                        <input type="hidden" name="TenSanPham" value="@Model.TenSanPham" />
+                                        <input type="hidden" name="Gia" value="@Model.Gia" />
+                                        <div class="quantity">
+                                            <label>Số lượng: </label>
+                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="SoLuong" min="1" step="1">
+
+                                        </div>
+
+                                        <div>
+                                            <button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
+                                        </div>
+
+                                    }
+                                    </div>
+                                
+
+                                @*<div class="product-inner-category">
+                                    <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
+                                </div>*@
+
+                                <div role="tabpanel">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                            <h2>Cấu hình</h2>
+                                            <p>
+                                                @Html.Raw(Model.CauHinh)
+                                            </p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

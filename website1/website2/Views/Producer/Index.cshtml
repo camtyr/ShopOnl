@@ -1,0 +1,88 @@
+﻿@model IEnumerable<website2.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    ViewBag.active = 3;
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Products</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product" style="text-align: center">
+                        <div class="product-upper" style="width: 200px; height: 200px">
+                            <a href="@Url.Action("Details", "Product", new {id = @item.MaSanPham})">
+                                <img src="~/assets/img/@item.HinhChinh" alt="">
+                            </a>
+                        </div>
+                        <h2><a href="@Url.Action("Details", "Product",new {id = @item.MaSanPham})">@item.TenSanPham</a></h2>
+                        <div class="product-carousel-price">
+                            <span>@string.Format("{0: 0,#}", @item.Gia) VNĐ</span>
+                        </div>
+
+                        <div class="product-option-shop">
+                            @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                            {
+                                <input type="hidden" name="MaSanPham" value="@item.MaSanPham" />
+                                <input type="hidden" name="Gia" value="@item.Gia" />
+                                <input type="hidden" name="TenSanPham" value="@item.TenSanPham" />
+                                <input type="hidden" value="1" name="SoLuong">
+
+
+                                <div>
+                                    <button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
+                                </div>
+                            }
+                            </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        @*<div class="row">
+            <div class="col-md-12">
+                <div class="product-pagination text-center">
+                    <nav>
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+
